@@ -1,6 +1,7 @@
 package com.produtos.produtos.controller;
 
 import com.produtos.produtos.model.ProdutosModel;
+import com.produtos.produtos.model.valoresProdutos.CalculoDesconto;
 import com.produtos.produtos.service.ProdutosService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -27,8 +28,8 @@ public class ProdutosController {
 
     @PostMapping(path = "/produtos")
     @ResponseStatus(HttpStatus.CREATED)
-    public ProdutosModel cadastrarProdutos(@RequestBody ProdutosModel produtosModel) {
-        return produtosService.cadastrar(produtosModel);
+    public ProdutosModel cadastrarProdutos(@RequestBody ProdutosModel produtosModel, CalculoDesconto calculoDesconto) {
+        return produtosService.cadastrar(produtosModel, calculoDesconto);
     }
 
     @PutMapping(path = "/produtos/{codigo}")

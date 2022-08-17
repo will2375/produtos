@@ -1,6 +1,7 @@
 package com.produtos.produtos.service;
 
 import com.produtos.produtos.model.ProdutosModel;
+import com.produtos.produtos.model.valoresProdutos.CalculoDesconto;
 import com.produtos.produtos.repository.ProdutosRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -22,10 +23,15 @@ public class ProdutosService {
         return produtosRepository.findById(codigo);
     }
 
-    public ProdutosModel cadastrar(ProdutosModel produtosModel) {
+    public ProdutosModel cadastrar(ProdutosModel produtosModel, CalculoDesconto calculoDesconto) {
+        Double resultado = calculoDesconto.descontoProduto(produtosModel.getValor(), produtosModel.getDesconto());
+        Double valorFinal = calculoDesconto.valorFinal(produtosModel.getValor(), resultado);
         produtosModel.getCodigo();
         produtosModel.getNome();
         produtosModel.getValor();
+        produtosModel.getDesconto();
+        produtosModel.setValorDesconto(resultado);
+        produtosModel.setValorTotal(valorFinal);
         return produtosRepository.save(produtosModel);
     }
 
@@ -33,6 +39,8 @@ public class ProdutosService {
         produtosModel.getCodigo();
         produtosModel.getNome();
         produtosModel.getValor();
+        produtosModel.getDesconto();
+        produtosModel.getValorDesconto();
 
         return produtosRepository.save(produtosModel);
     }

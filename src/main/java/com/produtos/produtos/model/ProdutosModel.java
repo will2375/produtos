@@ -12,7 +12,7 @@ import javax.persistence.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "Produto")
+@Table(name = "Produtos")
 public class ProdutosModel {
 
     @Id
@@ -22,4 +22,10 @@ public class ProdutosModel {
     private String nome;
     @Column(length = 10, nullable = false)
     private double valor;
+    @Column(length = 10, nullable = false)
+    private double desconto;
+    @Column(length = 10, nullable = false)
+    private double valorDesconto;
+    @Column(length =10, nullable = false)
+    private double valorTotal;
 }
